@@ -1,0 +1,274 @@
+/* Currently scoping css with .module.css is not possible because vite does
+* not support inserts styles into a shadow root. This is a known issue and
+* currently in progress. Until then we can use the global.css file and put 
+* everything here for now. 
+*
+* Yikes. 
+* Another option is to use a css-in-js library like styled-components or
+* emotion or the library that rainbowkit is using ( vanilla extract ). Something to consider
+* once things start getting messy.
+*
+*/
+
+/*
+* Reset
+*/
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Prevent zooming when orientation changes on some iOS devices */
+html {
+  text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Reset Over */
+
+.root {
+  font-family: ui-sans-serif, system-ui, -apple-system, "system-ui", "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/*
+* NOTE: Most utility classes and values are from tailwindcss. 
+* This is because we don't need the entirity of the tailwind
+* currently. Setting it up with this custom react app that 
+* compiles down to a web component is not trivial. However, if 
+* in future we feel the need to have access to tailwind we can 
+* spend the time to set it up and maintain parity with it because
+* we are using the same values. 
+*/
+
+/* Text utility */
+
+.text-xs {
+  font-size: 0.75rem; /* 12px */
+  line-height: 1rem; /* 16px */
+}
+
+.text-sm {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
+}
+
+.text-base {
+  font-size: 1rem; /* 16px */
+  line-height: 1.5rem; /* 24px */
+}
+
+.text-lg {
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.75rem; /* 28px */
+}
+
+.text-xl {
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.75rem; /* 28px */
+}
+
+.text-2xl {
+  font-size: 1.5rem; /* 24px */
+  line-height: 2rem; /* 32px */
+}
+
+.text-3xl {
+  font-size: 1.875rem; /* 30px */
+  line-height: 2.25rem; /* 36px */
+}
+
+.text-4xl {
+  font-size: 2.25rem; /* 36px */
+  line-height: 2.5rem; /* 40px */
+}
+
+.text-5xl {
+  font-size: 3rem; /* 48px */
+  line-height: 1;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Rounded */
+.rounded-lg {
+  border-radius: 0.5rem; /* 8px */
+}
+
+.rounded-xl {
+  border-radius: 0.75rem; /* 12px */
+}
+
+.rouned-2xl {
+  border-radius: 1rem; /* 16px */
+}
+
+/* Shadow */
+
+.shadow {
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* Max Width Utility */
+.max-w-lg {
+  max-width: 32rem; /* 512px */
+}
+
+.max-w-xl {
+  max-width: 36rem; /* 576px */
+}
+
+.max-w-2xl {
+  max-width: 42rem; /* 672px */
+}
+
+/* Buttons */
+
+.no-style-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.button {
+  background-color: var(--color-btn-bg);
+  color: var(--color-btn-text);
+  padding: var(--btn-padding);
+  --btn-shadow: 0px 1px 3px rgba(47, 43, 67, 0.1),
+    inset 0px -1px 0px rgba(47, 43, 67, 0.1);
+  box-shadow: var(--btn-shadow);
+  --btn-border: 1px solid rgba(0, 0, 0, 0);
+  border: var(--btn-border);
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.button:focus {
+  --btn-shadow: 0px 0px 0px 3px rgba(132, 66, 211, 0.48);
+}
+
+.button:disabled {
+  --color-btn-bg: rgba(47, 43, 67, 0.05) !important;
+  --color-btn-text: rgba(47, 43, 67, 0.3) !important;
+  --btn-shadow: none;
+  cursor: not-allowed;
+}
+
+.button[data-btn-width-full="true"] {
+  width: 100%;
+}
+
+.button[data-btn-width-full="false"] {
+  width: fit-content;
+}
+
+.button[data-btn-intent="primary"] {
+  --color-btn-bg: #2f2b43;
+  --color-btn-text: #fff;
+}
+
+.button[data-btn-intent="primary"]:hover {
+  --color-btn-bg: #3f395a;
+}
+
+.button[data-btn-intent="secondary"] {
+  --color-btn-bg: #ffffff;
+  --color-btn-text: #000000;
+  --btn-border: 1px solid rgba(47, 43, 67, 0.1);
+}
+
+.button[data-btn-intent="secondary"]:hover {
+  --color-btn-bg: #f6f6f8;
+  --btn-border: 1px solid rgba(47, 43, 67, 0.2);
+}
+
+.button[data-btn-size="large"] {
+  --btn-padding: 12px 16px;
+}
+/* TOOD: Button medium and small and destructive */
+
+/* Custom Animations  */
+
+@keyframes fadeInBackground {
+  0% {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
